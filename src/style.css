@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1e1a20af;
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+  z-index: -9999;
+}
+
+.section {
+  display: block;
+  font-family: "Cabin", sans-serif;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  color: #ffeded;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.section1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.nav1 {
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+}
+
+.nav-item:hover {
+  text-decoration-line: underline;
+}
+
+.nav-content {
+  background-color: #1e1a2094;
+  justify-content: center;
+}
+.remove-dot {
+  list-style: none;
+}
+
+.scroll-container {
+  height: 35rem;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container-content {
+  height: 25rem;
+}
+
+.text-lb {
+  color: #9b6db0;
+  font-size: larger;
+}
+
+@media screen and (max-width: 768px) {
+  .section3 {
+    font-size: smaller;
+  }
+  .scroll-container {
+    height: 20rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-content {
+    font-size: small;
+  }
+
+  .scroll-container {
+    height: 25rem;
+  }
+  .scroll-container-content {
+    height: 30rem;
+    overflow-y: scroll;
+  }
+  .section3 {
+    overflow-y: scroll;
+  }
+}
+
+.animation {
+  z-index: -9998;
+  border: 0.55rem solid white;
+  position: absolute;
+  animation: pulse-border 1.5s linear infinite;
+  width: 95%;
+  height: 100%;
+}
+
+.animation-box {
+  position: relative;
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
