@@ -4,10 +4,14 @@ import * as dat from "lil-gui";
 
 import gsap from "gsap";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
+
 /**
  * Debug
  */
-// const gui = new dat.GUI({ closed: true });
+// const gui = new dat.GUI();
 
 const parameters = {
   materialColor: "#ffeded",
@@ -17,9 +21,6 @@ const parameters = {
 //   material.color.set(parameters.materialColor);
 //   particlesMaterial.color.set(parameters.materialColor);
 // });
-
-// gui.addColor(parametersGalaxy, "inSideColor").onFinishChange(generateGalaxy);
-// gui.addColor(parametersGalaxy, "outSideColor").onFinishChange(generateGalaxy);
 
 /**
  * Base
@@ -39,18 +40,20 @@ const textureLoader = new THREE.TextureLoader();
 const gradientTexture = textureLoader.load("/textures/gradients/5.jpg");
 
 const particleTexture = textureLoader.load("/textures/particles/1.png");
-
+const ProfTexture = textureLoader.load("/images/pro1.jpg");
 // magFilter change the link between different colors
-// // gradientTexture.magFilter = THREE.NearestFilter;
+// gradientTexture.magFilter = THREE.NearestFilter;
 //Material
 
-const objectsDistance = 5;
+const objectsDistance = 4;
 
 // MeshToonMaterial   needs lights to see it or else is dark black
 const material = new THREE.MeshToonMaterial({
   color: parameters.materialColor,
   gradientMap: gradientTexture,
 });
+const meshBig = new THREE.Mesh(new THREE.BoxGeometry(2, 2, 2), material);
+meshBig.position.z = 3;
 const mesh1 = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.4, 1.4), material);
 
 const mesh2 = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), material);
@@ -69,17 +72,24 @@ const meshS7 = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), material);
 const meshS8 = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), material);
 const meshS9 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), material);
 const meshS10 = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.3), material);
+const meshS11 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), material);
+const meshS12 = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), material);
+const meshS13 = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), material);
+const meshS14 = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.3), material);
+const meshS15 = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.4, 1.4), material);
+const meshS16 = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.5), material);
 
-mesh1.position.y = -objectsDistance * 0;
+mesh1.position.y = -objectsDistance * 1.5;
+mesh1.position.x = -4;
 
 mesh2.position.y = -objectsDistance * 1;
 
 mesh3.position.y = -objectsDistance * 2;
 
-mesh4.position.y = -objectsDistance * 3.1;
+mesh4.position.y = -objectsDistance * 3.18;
 
 meshS1.position.y = -objectsDistance * 0.3;
-meshS2.position.y = -objectsDistance * 0.5;
+meshS2.position.y = -objectsDistance * 0.1;
 meshS3.position.y = -objectsDistance * 1.3;
 meshS4.position.y = -objectsDistance * 1.5;
 meshS5.position.y = -objectsDistance * 2.3;
@@ -88,9 +98,15 @@ meshS7.position.y = -objectsDistance * 2.3;
 meshS8.position.y = -objectsDistance * 2.6;
 meshS9.position.y = -objectsDistance * 2.8;
 meshS10.position.y = -objectsDistance * 2.5;
+meshS11.position.y = -objectsDistance * 2.6;
+meshS12.position.y = -objectsDistance * 2.7;
+meshS13.position.y = -objectsDistance * 2.8;
+meshS14.position.y = -objectsDistance * 2.9;
+meshS15.position.y = -objectsDistance * -0.6;
+meshS16.position.y = -objectsDistance * 0.35;
 
 meshS1.position.x = -2.5;
-meshS2.position.x = 2.5;
+meshS2.position.x = 3.5;
 meshS3.position.x = -2.5;
 meshS4.position.x = 2.5;
 meshS5.position.x = -2.5;
@@ -99,6 +115,12 @@ meshS7.position.x = -2.5;
 meshS8.position.x = 0.5;
 meshS9.position.x = 0.2;
 meshS10.position.x = -0.5;
+meshS11.position.x = -0.4;
+meshS12.position.x = 0.5;
+meshS13.position.x = 0.4;
+meshS14.position.x = -0.1;
+meshS15.position.x = 3;
+meshS16.position.x = 3;
 
 meshS1.rotation.x = 6;
 meshS2.rotation.x = -6;
@@ -109,7 +131,14 @@ meshS6.rotation.x = -7;
 meshS7.rotation.x = 5;
 meshS8.rotation.x = 3;
 meshS9.rotation.x = 5;
-meshS10.rotation.x = -10;
+meshS10.rotation.x = -2;
+meshS11.rotation.x = -7;
+meshS12.rotation.x = -8;
+meshS13.rotation.x = 3;
+meshS14.rotation.x = -4;
+meshS16.rotation.z = 5;
+
+meshS15.position.z = -3;
 
 scene.add(
   mesh1,
@@ -125,7 +154,14 @@ scene.add(
   meshS7,
   meshS8,
   meshS9,
-  meshS10
+  meshS10,
+  meshS11,
+  meshS12,
+  meshS13,
+  meshS14,
+  meshS15,
+  meshS16,
+  meshBig
 );
 
 const sectionMeshes = [
@@ -143,6 +179,13 @@ const sectionMeshes = [
   meshS8,
   meshS9,
   meshS10,
+  meshS11,
+  meshS12,
+  meshS13,
+  meshS14,
+  meshS15,
+  meshS16,
+  meshBig,
 ];
 
 /**
@@ -231,13 +274,13 @@ const generateGalaxy = () => {
       (Math.random() < 0.5 ? 1 : -1);
     const randomY =
       Math.pow(Math.random(), parametersGalaxy.randomnessPower) *
-      (Math.random() < 0.5 ? 1 : -1);
+      (Math.random() < 0.5 ? 5 : -5);
     const randomZ =
       Math.pow(Math.random(), parametersGalaxy.randomnessPower) *
       (Math.random() < 0.5 ? 1 : -1);
 
     Galaxyposition[i3] = Math.cos(branchAngle + spinAngele) * radius + randomX;
-    Galaxyposition[i3 + 1] = randomY - objectsDistance * 3.3;
+    Galaxyposition[i3 + 1] = randomY - objectsDistance * 3.35;
     Galaxyposition[i3 + 2] =
       Math.sin(branchAngle + spinAngele) * radius + randomZ;
 
@@ -273,7 +316,10 @@ const generateGalaxy = () => {
   scene.add(points);
 };
 
-generateGalaxy();
+// generateGalaxy();
+
+// gui.addColor(parametersGalaxy, "inSideColor").onFinishChange(generateGalaxy);
+// gui.addColor(parametersGalaxy, "outSideColor").onFinishChange(generateGalaxy);
 
 /**
  * Light
@@ -349,7 +395,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 let scrollY = window.scrollY;
 
 let curremtSection = 0;
-let fullRotation = Math.PI * 0.005;
+let fullRotation = Math.PI / sizes.width;
 
 window.addEventListener("scroll", () => {
   scrollY = window.scrollY;
@@ -358,12 +404,19 @@ window.addEventListener("scroll", () => {
 
   if (newSection != curremtSection) {
     curremtSection = newSection;
-
-    gsap.to(cameraGroup.rotation, {
-      duration: 2,
-      ease: "power2.inOut",
-      y: fullRotation,
-    });
+    if (curremtSection === 1 || curremtSection === 0) {
+      gsap.to(cameraGroup.rotation, {
+        duration: 3,
+        ease: "power2.inOut",
+        y: "-=1.5",
+      });
+    } else {
+      gsap.to(cameraGroup.rotation, {
+        duration: 3,
+        ease: "power2.inOut",
+        y: "+=1.5",
+      });
+    }
 
     gsap.to(sectionMeshes[curremtSection].rotation, {
       duration: 1.5,
@@ -407,9 +460,9 @@ const tick = () => {
   //Animate Parallax
   const parallaxX = cursor.x * 0.5;
   const parallaxY = -cursor.y * 0.5;
-  mesh3.position.x = cursor.x * 5;
-  mesh3.position.y = -cursor.y * 5 + -objectsDistance * 2;
-  mesh3.rotation.z = cursor.x * 5;
+  mesh3.position.x = cursor.x * 3;
+  mesh3.position.y = -cursor.y * 3 + -objectsDistance * 2;
+  mesh3.rotation.z = cursor.x * 3;
 
   mesh2.position.x = cursor.x * 2;
   mesh2.position.y = -cursor.y * 2 + -objectsDistance * 1;
@@ -432,9 +485,7 @@ const tick = () => {
     (parallaxY - cameraGroup.position.y) * 5 * deltaTime;
 
   //Animate Spin
-  cameraGroup.rotation.y += fullRotation * 5 * deltaTime;
-
-  //Animate
+  cameraGroup.rotation.y += fullRotation * 50 * deltaTime;
 
   //Animate meshes
   for (const mesh of sectionMeshes) {
